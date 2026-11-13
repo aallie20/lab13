@@ -11,7 +11,7 @@ const std::string &Game::title() const { return m_title; }
 
 int Game::last_score() const { return m_last_score; }
 
-void Game::play() { std::cout << "Game::play called\n"; }
+//Removed Game::play 
 
 void Game::set_score(int score) { m_last_score = score; }
 
