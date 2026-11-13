@@ -215,7 +215,12 @@ int play_dungeon() {
       }
       // TODO (Lab 13, Task 4): after entering, call meet_monster() and
       // return 0 if the player died. Add monster_bonus * defeated to the
-      // score you return.
+     
+     if (!meet_monster(player, d, defeated)) {
+    return 0;
+}
+
+     // score you return.
     } else if (verb == "take") {
       if (noun.empty()) {
         std::cout << "Take what?\n";
