@@ -5,7 +5,12 @@
 Room::Room(std::string name, std::string description)
     : m_name{name}, m_description{description},
       m_exits{nullptr, nullptr, nullptr, nullptr}, m_items{}, m_item_count{0},
-      m_trap_damage{0} {}
+      m_trap_damage{0},
+      m_monster{nullptr} {}
+
+    Room::~Room() {
+    delete m_monster;
+}
 
 const std::string &Room::name() const { return m_name; }
 
@@ -54,6 +59,15 @@ void Room::list_items() const {
     std::cout << "  " << m_items[i].name() << " (weight " << m_items[i].weight()
               << ")\n";
   }
+}
+
+void Room::set_monster(Monster *monster) {
+    delete m_monster;
+    m_monster = monster;
+}
+
+Monster *Room::monster() const {
+    return m_monster;
 }
 
 void Room::set_trap_damage(int damage) { m_trap_damage = damage; }
