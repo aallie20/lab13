@@ -179,6 +179,8 @@ int play_dungeon() {
 
   Player player{"Adventurer", &rooms[0]};
 
+  int defeated = 0;
+
   std::cout << "\n--- Dungeon ---\n";
   print_help();
   if (!enter_room(player)) {
