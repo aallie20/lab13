@@ -48,6 +48,19 @@ Choice parse_choice(const std::string &text) {
 } // namespace
 
 int main() {
+
+    Arcade arcade;
+
+    arcade.add(new Hangman());
+    arcade.add(new Minesweeper());
+    arcade.add(new Dungeon());
+    arcade.add(new Blackjack());
+
+    arcade.run();
+
+    return 0;
+}
+
   std::string line;
   while (true) {
     print_menu();
