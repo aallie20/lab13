@@ -70,13 +70,48 @@ constexpr int monster_bonus = 25;
 ///
 /// Use only the Monster interface. There must be no `if` on the kind of
 /// monster.
-[[maybe_unused]] FightResult fight(Player &player, Monster &monster) {
   // TODO (Lab 13, Task 4)
-  (void)player;
-  (void)monster;
-  return FightResult::fled;
-}
+FightResult fight(Player &player, Monster &monster) {
+  std::string line;
 
+  while (!monster.is_dead()) {
+    std::cout << monster.describe() << "\n";
+    std::cout << "Health: " << player.health() << "\n";
+    std::cout << "(a)ttack or (f)lee: ";
+
+    if (!std::getline(std::cin, line)) {
+      return FightResult::fled;
+    }
+
+    if (line == "f") {
+      return FightResult::fled;
+    }
+
+    if (line == "a") {
+      monster.take_damage(player_attack);
+
+      if (!monster.is_dead()) {
+        player.take_damage(monster.attack_damage());
+
+        std::cout
+            << monster.name()
+            << " hits for "
+            << monster.attack_damage()
+            << " damage.\n";
+
+        if (!player.is_alive()) {
+          return FightResult::died;
+        }
+      }
+    }
+  }
+
+  std::cout << "You defeated the "
+            << monster.name()
+            << "!\n";
+
+  return FightResult::won;
+}
 /// Fight the monster in the room the player just entered, if there is a live
 /// one. If the player flees, walk back through the exit they came in by:
 /// player.move(opposite(came_by)).
