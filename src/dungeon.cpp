@@ -117,16 +117,30 @@ FightResult fight(Player &player, Monster &monster) {
 /// player.move(opposite(came_by)).
 /// @param defeated incremented when the player wins a fight
 /// @return false if the player died
-[[maybe_unused]] bool meet_monster(Player &player, Direction came_by,
-                                   int &defeated) {
   // TODO (Lab 13, Task 4): needs Room::monster() from Task 3.
-  (void)player;
-  (void)came_by;
-  (void)defeated;
-  return true;
-}
 
-} // namespace
+bool meet_monster(Player &player, Direction came_by,
+                  int &defeated) {
+  Monster *monster = player.location()->monster();
+
+  if (monster == nullptr || monster->is_dead()) {
+    return true;
+  }
+
+  FightResult result = fight(player, *monster);
+
+  if (result == FightResult::won) {
+    ++defeated;
+    return true;
+  }
+
+  if (result == FightResult::fled) {
+    player.move(opposite(came_by));
+    return true;
+  }
+
+  return false;
+}
 
 int dungeon_score(int items_collected, int health) {
   return 10 * items_collected + health;
