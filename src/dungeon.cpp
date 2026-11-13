@@ -195,7 +195,9 @@ int play_dungeon() {
 
     if (verb == "quit") {
       std::cout << "You leave the dungeon.\n";
-      return dungeon_score(player.inventory_count(), player.health());
+return dungeon_score(player.inventory_count(), player.health());
++ monster_bonus * defeated;
+
     } else if (verb == "help") {
       print_help();
     } else if (verb == "look") {
@@ -242,4 +244,5 @@ int play_dungeon() {
     }
   }
   return dungeon_score(player.inventory_count(), player.health());
+    + monster_bonus * defeated;
 }
