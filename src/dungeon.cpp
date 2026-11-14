@@ -141,7 +141,7 @@ bool meet_monster(Player &player, Direction came_by,
 
   return false;
 }
-
+}
 int dungeon_score(int items_collected, int health) {
   return 10 * items_collected + health;
 }
@@ -195,8 +195,8 @@ int play_dungeon() {
 
     if (verb == "quit") {
       std::cout << "You leave the dungeon.\n";
-return dungeon_score(player.inventory_count(), player.health());
-+ monster_bonus * defeated;
+return dungeon_score(player.inventory_count(), player.health()) 
+    + monster_bonus * defeated;
 
     } else if (verb == "help") {
       print_help();
@@ -243,6 +243,6 @@ return dungeon_score(player.inventory_count(), player.health());
       std::cout << "Unknown command '" << verb << "'. Type help.\n";
     }
   }
-  return dungeon_score(player.inventory_count(), player.health());
-    + monster_bonus * defeated;
+  return dungeon_score(player.inventory_count(), player.health()) 
+        + monster_bonus * defeated;
 }

@@ -37,6 +37,7 @@ add_library(arcade_lib STATIC
     src/item.cpp
     src/minesweeper.cpp
     src/minesweeper_game.cpp
+    src/monster.cpp
     src/player.cpp
     src/room.cpp
 )
